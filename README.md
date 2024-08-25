@@ -19,6 +19,15 @@ R, PHP, Java.
  
  # IDE Used
  **PyCharm** ver. 2024.2.0.1
+
+ # Softwares used
+
+| Name |
+| ------ |
+| [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
+| [XAMPP](https://www.apachefriends.org/download.html) |
+| Postman Agent |
+|[Github Desktop](https://desktop.github.com/download/)|
  
  # Pre-requisite
  1. For SQL I'm using XAMPP Server with the following configuration
@@ -47,15 +56,6 @@ project_name/task_management_api/initialize_db.py
 python initialize_db.py
 ```
 This will create all the necessay Tables and their columns inside MySQL Server
-
-# Softwares used
-
-| Name |
-| ------ |
-| [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
-| [XAMPP](https://www.apachefriends.org/download.html) |
-| Postman Agent |
-|[Github Desktop](https://desktop.github.com/download/)|
 
 # Directory
 The following is the structure of the project. Your directory should look similar to this.
