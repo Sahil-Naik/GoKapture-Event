@@ -16,77 +16,49 @@ R, PHP, Java.
 - Test cases to test on Postman (link: https://postman.com/)
 
 > Postman is a standalone software testing API platform that allows users to build, test, design, modify, and document APIs
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
  
  ## IDE Used
  **PyCharm** ver. 2024.2.0.1
  
  ## Pre-requisite
- For SQL I'm using XAMPP Server with the following configuration
+ 1. For SQL I'm using XAMPP Server with the following configuration
 - username: root
 - password:
 - database: task_db
 
+2. An account on Postman (link: https://postman.com/).
 ## Installation
 
 This code requires [Python](https://www.python.org/downloads/) 3.1x.x to run.
 
-Install the dependencies and devDependencies and start the server.
+Install the dependencies and devDependencies.
+project_name/requirements.txt
+
 Enter the following in PyCharm Bash Shell (Terminal):
 ```sh
 cd task_management_api
 pip install -r requirements.txt
 ```
 This will install all the necessary packages to run the APP.
-For production environments...
 
+For **SQL** environments:
+project_name/task_management_api/initialize_db.py
 ```sh
-npm install --production
-NODE_ENV=production node app
+python initialize_db.py
 ```
+This will create all the necessay Tables and their columns inside MySQL Server
 
-## Plugins
+## Softwares used
 
-Dillinger is currently extended with the following plugins.
-Instructions on how to use them in your own application are linked below.
+| Name |
+| ------ |
+| [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
+| [XAMPP](https://www.apachefriends.org/download.html) |
+| Postman Agent |
+|[Github Desktop](https://desktop.github.com/download/)|
 
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
 
-## Development
 
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantaneously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-
-```sh
-node app
-```
-
-Second Tab:
-
-```sh
-gulp watch
-```
-
-(optional) Third:
-
-```sh
-karma test
-```
 
 #### Building for source
 
@@ -102,65 +74,30 @@ Generating pre-built zip archives for distribution:
 gulp build dist --prod
 ```
 
-## Docker
+## Docker Installation
 
-Dillinger is very easy to install and deploy in a Docker container.
+### 1. Install Docker Desktop for Windows
+If you haven’t already, install Docker Desktop for Windows:
+- Download Docker Desktop from the [Official docker website](https://www.docker.com/products/docker-desktop/).
+- Run the installer and follow the prompts.
+- After installation, launch Docker Desktop and ensure it’s running. You should see the Docker icon in your system tray.
 
-By default, the Docker will expose port 8080, so change this within the
-Dockerfile if necessary. When ready, simply use the Dockerfile to
-build the image.
+### 2. Enable WSL 2 (Optional, but Recommended)
+For better performance, especially with file system operations, enable WSL 2 (Windows Subsystem for Linux):
+- Go to the Docker Desktop settings.
+- Under the General tab, check the option to Use the WSL 2 based engine.
+- Install a Linux distribution from the Microsoft Store if you haven't already.
 
+### 3. Open PyCharm
+- Open your project in PyCharm.
+- Ensure that you have your Dockerfile and docker-compose.yml files in the root directory of your project.
+
+### 4. Open Terminal in PyCharm
+In PyCharm, open the terminal by selecting View > Tool Windows > Terminal.
+You should see a terminal window at the bottom of the PyCharm interface.
+
+### 5. Build Docker Containers
+In the terminal, navigate to the directory containing your docker-compose.yml file (if not already there) and run:
 ```sh
-cd dillinger
-docker build -t <youruser>/dillinger:${package.json.version} .
+docker-compose build
 ```
-
-This will create the dillinger image and pull in the necessary dependencies.
-Be sure to swap out `${package.json.version}` with the actual
-version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on
-your host. In this example, we simply map port 8000 of the host to
-port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart=always --cap-add=SYS_ADMIN --name=dillinger <youruser>/dillinger:${package.json.version}
-```
-
-> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
-
-Verify the deployment by navigating to your server address in
-your preferred browser.
-
-```sh
-127.0.0.1:8000
-```
-
-## License
-
-MIT
-
-**Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
