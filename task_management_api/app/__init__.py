@@ -8,6 +8,9 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/task_db'
+    # Default - mysql://username:password@localhost/database_name
+    # Configure the mysql link as per your system
+
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['JWT_SECRET_KEY'] = '1234'  # Change this to a random secret key
 

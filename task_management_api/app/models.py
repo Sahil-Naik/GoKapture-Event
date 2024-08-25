@@ -2,6 +2,12 @@ from . import db
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# In SQL inside our database we will create 2 new tables
+# 1. User(id, username, password)
+# 2. Task(id, title, description, status, priority, due_date, created_at, updated_at, user_id, user)
+
+# Here the Task.user_id is used as Foreign Key for User.id
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)

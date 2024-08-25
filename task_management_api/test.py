@@ -1,3 +1,7 @@
+# This program is used to verify password
+# It ensures the stored password is hashed
+# And it stays true to the user privacy concerns
+
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # Test hashing
