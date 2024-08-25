@@ -317,12 +317,9 @@ docker-compose up
 ```
 This will start your Flask app and MySQL database in their respective containers. You should see logs appearing in the terminal as the containers start.
 
-7. Access Your Flask Application
+### 7. Access Your Flask Application
 Once the containers are running, you can access your Flask application by navigating to:
-
-http://localhost:5000 or
-http://127.0.0.1:5000
-in your web browser.
+http://localhost:5000 or http://127.0.0.1:5000 in your web browser.
 
 ### 8. Verify Everything is Working
 Check the Docker Containers:
