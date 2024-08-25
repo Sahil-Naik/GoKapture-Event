@@ -57,6 +57,20 @@ This will create all the necessay Tables and their columns inside MySQL Server
 | Postman Agent |
 |[Github Desktop](https://desktop.github.com/download/)|
 
+# Launching App
+Open PyCharm Terminal and make sure the current directory is project_name/task_management_api/.
+
+The following file must be present in the directory:
+```sh
+run.py
+```
+
+Next,
+Type the following in the terminal:
+```sh
+python run.py
+```
+
 ## Docker Installation
 
 ### 1. Install Docker Desktop for Windows
