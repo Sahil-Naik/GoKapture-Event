@@ -57,23 +57,6 @@ This will create all the necessay Tables and their columns inside MySQL Server
 | Postman Agent |
 |[Github Desktop](https://desktop.github.com/download/)|
 
-
-
-
-#### Building for source
-
-For production release:
-
-```sh
-gulp build --prod
-```
-
-Generating pre-built zip archives for distribution:
-
-```sh
-gulp build dist --prod
-```
-
 ## Docker Installation
 
 ### 1. Install Docker Desktop for Windows
@@ -101,3 +84,39 @@ In the terminal, navigate to the directory containing your docker-compose.yml fi
 ```sh
 docker-compose build
 ```
+This command builds the Docker images according to the instructions in the Dockerfile.
+
+### 6. Run Docker Containers
+After the build process is complete, run the containers using:
+```sh
+docker-compose up
+```
+This will start your Flask app and MySQL database in their respective containers. You should see logs appearing in the terminal as the containers start.
+
+7. Access Your Flask Application
+Once the containers are running, you can access your Flask application by navigating to:
+
+http://localhost:5000 or
+http://127.0.0.1:5000
+in your web browser.
+
+### 8. Verify Everything is Working
+Check the Docker Containers:
+In Docker Desktop, you can see the running containers and their status.
+
+Logs:
+You can monitor the logs in the PyCharm terminal to see the output from your Flask app and database.
+
+### 9. Stopping the Containers
+When you’re done testing:
+- Go to the PyCharm terminal.
+- Press Ctrl + C to stop the running containers.
+
+Alternatively, you can stop the containers using:
+```sh
+docker-compose down
+```
+This command will stop and remove the containers, networks, and any associated volumes.
+
+### 10. Managing Docker from Docker Desktop
+Docker Desktop provides a GUI to manage containers, images, networks, and volumes, making it easy to interact with your Docker environment without using the command line.
