@@ -4,23 +4,23 @@
 Python SDE, Full-Stack Dev, Data Scientist, ML Engineer,
 R, PHP, Java.
 
-## Features
+# Features
 - Python
 - RESTful API
 - Flask
 - Postman
 - Docker
 
-## Included Documentations
+# Included Documentations
 - Launching the APP locally
 - Test cases to test on Postman (link: https://postman.com/)
 
 > Postman is a standalone software testing API platform that allows users to build, test, design, modify, and document APIs
  
- ## IDE Used
+ # IDE Used
  **PyCharm** ver. 2024.2.0.1
  
- ## Pre-requisite
+ # Pre-requisite
  1. For SQL I'm using XAMPP Server with the following configuration
 - username: root
 - password:
@@ -48,7 +48,7 @@ python initialize_db.py
 ```
 This will create all the necessay Tables and their columns inside MySQL Server
 
-## Softwares used
+# Softwares used
 
 | Name |
 | ------ |
@@ -56,6 +56,27 @@ This will create all the necessay Tables and their columns inside MySQL Server
 | [XAMPP](https://www.apachefriends.org/download.html) |
 | Postman Agent |
 |[Github Desktop](https://desktop.github.com/download/)|
+
+# Directory
+The following is the structure of the project. Your directory should look similar to this.
+```sh
+task_management_api/
+│
+├── app/
+│   ├── __init__.py
+│   ├── models.py
+│   └── routes.py
+│
+├──  migrations/
+│   ├── .
+│   └── .
+│
+├── docker-compose.yml
+├── rquirements.txt
+├── test.py
+└── run.py
+
+```
 
 # Launching App
 Open PyCharm Terminal and make sure the current directory is project_name/task_management_api/.
@@ -71,7 +92,195 @@ Type the following in the terminal:
 python run.py
 ```
 
-## Docker Installation
+If done correctly,
+The following should appear on the terminal:
+```sh
+* Serving Flask app 'app'
+* Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+* Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+* Restarting with stat
+* Debugger is active!
+* Debugger PIN: xxx-xxx-xxx
+```
+
+Now the APP has launched!
+
+## Testing the APP
+### 1. Postman Account
+1. Open the [Postman site](https://postman.com/)
+2. Login/Signup into your account
+ 
+### 2. Using Postman
+1. Download and Install Postman: Download Postman.
+
+2. Create a New Request:
+Open Postman and click on “New” > “Request”.
+Enter a name for your request and choose a collection if desired.
+
+3. Set Up the Request:
+**Method:** Choose POST (or other methods depending on the endpoint).
+**URL:** Enter the URL of your endpoint, e.g., http://127.0.0.1:5000/api/register.
+**Headers:** Add a header with Key: Content-Type and Value: application/json.
+**Body:** Select raw and enter your JSON payload, e.g.
+    ```sh
+    {
+      "username": "testuser",
+      "password": "testpass"
+    }
+    ```
+
+4. **Send the Request:** Click “Send” and view the response in the lower section of the Postman window.
+
+### 3. Postman Test-cases
+### A. User Registration
+**Endpoint:** POST /api/register
+**Request:**
+**URL:** http://127.0.0.1:5000/api/register
+**Method:** POST
+**Headers:** Content-Type: application/json
+**Body:**
+```sh
+{
+  "username": "testuser",
+  "password": "testpass"
+}
+```
+**Expected Response:**
+**Status Code:** 201 Created
+**Body:**
+```sh
+{
+  "message": "User registered successfully"
+}
+```
+
+### B. User Login
+**Endpoint:** POST /api/login
+**Request:**
+**URL:** http://127.0.0.1:5000/api/login
+**Method:** POST
+**Headers:** Content-Type: application/json
+**Body:**
+```sh
+{
+  "username": "testuser",
+  "password": "testpass"
+}
+```
+**Expected Response:**
+**Status Code:** 200 OK
+**Body:**
+```sh
+{
+  "access_token": "your_jwt_token_here"
+}
+```
+
+### C. Create Task
+**Endpoint:** POST /api/tasks
+**Request:**
+**URL:** http://127.0.0.1:5000/api/tasks
+**Method:** POST
+**Headers:** Content-Type: application/json
+**Authorization:** Bearer <your_jwt_token_here>
+**Body:**
+```sh
+{
+  "title": "Test Task",
+  "description": "This is a test task.",
+  "status": "Todo",
+  "priority": "High",
+  "due_date": "2024-08-31",
+  "user_id": 1
+}
+```
+**Expected Response:**
+**Status Code:** 201 Created
+**Body:**
+```sh
+{
+  "message": "Task created successfully"
+}
+```
+
+### D. Get Tasks
+**Endpoint:** GET /api/tasks
+**Request:**
+**URL:** http://127.0.0.1:5000/api/tasks
+**Method:** GET
+**Headers:**
+**Authorization:** Bearer <your_jwt_token_here>
+
+**Expected Response:**
+**Status Code:** 200 OK
+**Body:**
+```sh
+[
+    {
+    "id": 1,
+    "title": "Test Task",
+    "description": "This is a test task.",
+    "status": "Todo",
+    "priority": "High",
+    "due_date": "2024-08-31T00:00:00",
+    "created_at": "2024-08-24T00:00:00",
+    "updated_at": "2024-08-24T00:00:00",
+    "user_id": 1
+    }
+]
+```
+
+### E. Update Task
+**Endpoint:** PUT /api/tasks/<task_id>
+**Request:**
+**URL:** http://127.0.0.1:5000/api/tasks/1 (replace <task_id> with the actual task ID)
+**Method:** PUT
+**Headers:** Content-Type: application/json
+**Authorization:** Bearer <your_jwt_token_here>
+**Body:**
+```sh
+{
+  "title": "Updated Task",
+  "description": "This task has been updated.",
+  "status": "In Progress",
+  "priority": "Medium"
+}
+```
+**Expected Response:**
+**Status Code:** 200 OK
+**Body:**
+```sh
+{
+  "message": "Task updated successfully"
+}
+```
+
+### F. Delete Task
+**Endpoint:** DELETE /api/tasks/<task_id>
+**Request:**
+**URL:** http://127.0.0.1:5000/api/tasks/1 (replace <task_id> with the actual task ID)
+**Method:** DELETE
+**Headers:**
+**Authorization:** Bearer <your_jwt_token_here>
+
+**Expected Response:**
+**Status Code:** 200 OK
+**Body:**
+```sh
+{
+  "message": "Task deleted successfully"
+}
+```
+
+Notes:
+•	Replace <your_jwt_token_here> with the JWT token you receive from the login endpoint.
+•	Ensure that your Flask server is running and accessible at http://127.0.0.1:5000.
+•	Adjust the test cases as needed based on your actual implementation and requirements.
+
+
+# Docker Installation
 
 ### 1. Install Docker Desktop for Windows
 If you haven’t already, install Docker Desktop for Windows:
@@ -95,6 +304,7 @@ You should see a terminal window at the bottom of the PyCharm interface.
 
 ### 5. Build Docker Containers
 In the terminal, navigate to the directory containing your docker-compose.yml file (if not already there) and run:
+> Directory: project_name/task_management_api/.
 ```sh
 docker-compose build
 ```
